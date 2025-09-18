@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="es">
+
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: rgb(255, 254, 235);
+      color: #333;
+      line-height: 1.6;
+       background: url(fgd.jpg) center center;
+  background-size: cover;
+    }
+
+    header {
+      background-color: #00675e;
+      color: #f6f8dd;
+      padding: 36px 0;
+      font-size: 1.175rem;
+      position: relative;
+      text-align: center;
+    }
+
+    .corner-image {
+      position: absolute;
+      top: 3px;
+      width: 180px;
+      height: 160px;
+    }
+
+    .corner-left {
+      left: 3px;
+    }
+
+    .corner-right {
+      right: 3px;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      color: #f6f8dd;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+
+    .hero {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px 0px;
+      flex-direction: column;
+      text-align: center;
+      background-color: #fdfcd9;;
+    }
+
+  
+
+
+    .hero h1 {
+      font-size: 1.75rem;
+      margin-bottom: 20px;
+      color: #00675e;
+
+
+    }
+
+    .image-section {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin: 55px 0;
+      flex-wrap: wrap;
+    }
+
+    .image-section img {
+      width: 200px;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+
+    footer {
+      background-color: #f7f5dc;
+      color: rgb(0, 0, 0);
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 40px;
+    }
+
+  
+
+.modal {
+  display: none; /* Oculto por defecto */
+  position: fixed;
+  z-index: 10000; /* Encima de todo */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.6); /* Fondo semitransparente */
+}
+
+
+.modal-contenido {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+.modal-contenido h2 {
+  text-align: center;
+  color: #00674f;
+}
+
+.modal-contenido form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-contenido label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.modal-contenido input {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+}
+
+.modal-contenido button {
+  padding: 10px;
+  background-color: #00674f;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.modal-contenido button:hover {
+  background-color: #005e48;
+}
+
+.catalogo {
+  padding: 40px 20px;
+  background-color: #fdfcd9;
+  text-align: center;
+}
+
+
+.catalogo h2 {
+  margin-bottom: 30px;
+  color: #00674f;
+  text-align: center;
+}
+
+.productos {
+ 
+  display: grid;
+  grid-template-columns: repeat(3, 1.5fr);
+  gap: 30px;
+  justify-items: center;
+}
+.model3d {
+ 
+  display: grid;
+  grid-template-columns: repeat(3, 1.5fr);
+  gap: 5px;
+  justify-items: center;
+}
+.model-viewer{
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  width: 100px;
+  height: 100px;
+  padding: 25px;
+  text-align: center;
+}
+
+
+
+
+
+.producto {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  width: 250px;
+  padding: 30px;
+  text-align: left;
+}
+
+.producto img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.producto h3 {
+  margin: 10px 0 5px;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.producto p {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.precio {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #2f6233;
+}
+
+.producto button {
+  background-color: #00674f;
+  color: #fff;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#producto button:hover {
+  background-color: #005e48;
+}
+
+#botonInicio {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #00674f;
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  font-weight: bold;
+}
+
+
+#botonInicio:hover {
+  background-color: #005e48
+}
+
+#botonFormulario {
+  position: fixed;
+  bottom: 80px; 
+  right: 20px;
+  background-color: #00674f;
+  border: none;
+  border-radius: 50%;
+  padding: 12px;
+  cursor: pointer;
+  z-index: 1001;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+#botonFormulario:hover {
+  background-color: #005e48;
+}
+
+#botonFormulario img {
+  display: block;
+  width: 64px;
+  height: 60px;
+}
+
+.btn-estilo {
+  background-color: #00674f;
+  color: #fff;
+  padding: 20px 32px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 28px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-top: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+#menuLateral {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1002;
+}
+
+#botonMenu {
+  background-color: #f7f5dc;
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 12px 16px;
+  border-radius: 0 5px 5px 0;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 20px 0 0 0;
+  box-shadow: 2px 4px 8px rgba(0,0,0,0.2);
+}
+
+
+#barraMenu {
+  position: fixed;
+  top: 0;
+  left: -220px; 
+  width: 220px;
+  height: 100vh;
+  background-color: #f7f5dc;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.2);
+  transition: left 0.3s ease;
+}
+
+
+#barraMenu button {
+  background-color: #f7f5dc;
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: left;
+  font-size: 15px;
+}
+
+#barraMenu button:hover {
+  background-color: #f3f5bb;
+}
+  
+  #reloj {
+  font-weight: bold;
+  color: #f6f8dd;
+
+}
+
+.bloque {
+  background-color: #fdfcd9;
+  padding: 60px 30px;
+  margin-bottom: 175px; 
+  border-radius: 0px; 
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
+}
+
+.seccion-con-imagen {
+  position: relative;
+  background-color: #fdfcd9; /* Fondo beige base */
+  padding: 180px 90px;
+  margin-bottom: 175px;
+  overflow: hidden;
+}
+
+/* Imagen decorativa como capa */
+.seccion-con-imagen::before {
+  content: "";
+  position: absolute;
+  top: 0; /* Para que deje visible algo del fondo beige arriba */
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('Ban22rj3302.jpg') center center / cover no-repeat;
+  opacity: 0.67; /* Ajusta visibilidad */
+  z-index: 0;
+  border-radius: 8px;
+}
+
+
+/* Todo el contenido va encima de la imagen */
+.seccion-con-imagen > * {
+  position: relative;
+  z-index: 1;
+}
+.contenedor-nosotros {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+.contenedor-nosotros 
+ div { flex: 1 1 30%; background-color: #fffdf3; 
+  padding: 20px; 
+  border-radius: 8px;
+   box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+
+.info-quienes, .info-mision, .info-vision {
+  text-align: left;
+}
+
+
+.titulo-seccion {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: #003d30;
+}
+
+
+
+.N::before {
+  background: url('Ban22rj3302.jpg') center center / cover no-repeat;
+}
+
+.C::before {
+  background: url('Ban-rj.jpg') center center / cover no-repeat;
+}
+
+
+
+
+
+.carrusel-imagenes {
+  position: relative;
+  width: 100%;
+  max-width: 250px;
+  margin: 0 auto 10px;
+}
+
+.carrusel-imagenes img {
+  width: 100%;
+  border-radius: 6px;
+}
+
+.flecha {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 103, 94, 0.7);
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 18px;
+  z-index: 10;
+}
+
+.flecha.izquierda {
+  left: 5px;
+}
+
+.flecha.derecha {
+  right: 5px;
+}
+
+  #contenedor-modelo {
+    width: 800px;
+    height: 600px;
+    
+    margin-top: 40px;
+  }
+
+
+
+</style>
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Timekeeper</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+ <div id="menuLateral">
+  <button id="botonMenu">☰ Menú</button>
+  <div id="barraMenu">
+    <button onclick="scrollToSection('top')">Inicio</button>
+    <button onclick="scrollToSection('catalogo')">Productos</button>
+    <button onclick="scrollToSection('nosotros')">¿Quiénes Somos?</button>
+    <button onclick="scrollToSection('contacto')">Contacto</button>
+    <button onclick="scrollToSection('ofertas')">Modelos 3D</button>
+  </div>
+</div>
+
+
+<button id="botonFormulario" title="Carrito de compra">
+  <img src="Carrob.png" alt="Carrito" width="32" height="32">
+</button>
+
+
+
+
+
+
+
+
+
+  <div id="modalRegistro" class="modal">
+  <div class="modal-contenido">
+    <h2>Registro de Usuario</h2>
+    <form id="formularioRegistro">
+      <label for="nombre">Nombre completo:</label>
+      <input type="text" id="nombre" name="nombre" required>
+
+      <label for="id">ID:</label>
+      <input type="text" id="id" name="id" required>
+
+      <label for="email">Correo electrónico:</label>
+      <input type="email" id="email" name="email" required>
+
+      <button type="submit">Registrarse</button>
+    </form>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+  <header>
+   
+    <img src="LogoD.png" alt="Logo Derecha" class="corner-image corner-right">
+    
+
+    
+    <h1>Timekeeper</h1>
+      
+      <div id="reloj" style="margin-top: 10px; font-size: 1.2rem;"></div>
+   
+  </header>
+
+ 
+  
+
+  <section class="hero">
+    <h1>Empresa enfocada en la venta de relojes</h1>
+    <p>Explora el contenido de este pequeño lugar</p>
+  
+</section>
+
+
+<section class="image-section">
+   <img src="Reloj 1.webp" alt="Imagen 1">
+    <img src="Reloj 4.jpg" alt="Imagen 2">
+    <img src="Reloj 5.webp" alt="Imagen 3">
+
+   
+  </section>
+
+ 
+
+  
+
+<section id="catalogo" class="bloque">
+ 
+  <h1>Catálogo de Relojes</h1>
+  
+  <div class="productos">
+
+
+<div class="producto">
+  <div class="carrusel-imagenes" data-imagenes='["reloj1_1.jpeg","reloj1_2.jpeg","reloj1_3.jpeg","reloj1_4.jpeg"]'>
+    <img src="reloj1_1.jpeg" class="imagen-activa" alt="Vista 1">
+
+    <button class="flecha izquierda">&#10094;</button>
+    <button class="flecha derecha">&#10095;</button>
+  </div>
+  <h3>Reloj Clásico</h3>
+  <p>Diseño elegante con correa de cuero genuino.</p>
+  <span class="precio">$50.000</span>
+      <button class="boton-comprar">Comprar</button>
+</div>
+
+<div class="producto">
+  <div class="carrusel-imagenes" data-imagenes='["reloj2_1.jpeg","reloj2_2.jpeg","reloj2_3.jpeg","reloj2_4.jpeg"]'>
+    <img src="reloj2_1.jpeg" class="imagen-activa" alt="Vista 1">
+    <button class="flecha izquierda">&#10094;</button>
+    <button class="flecha derecha">&#10095;</button>
+  </div>
+  <h3>Reloj Clásico</h3>
+  <p>Diseño elegante con correa de cuero genuino.</p>
+  <span class="precio">$50.000</span>
+    <button class="boton-comprar">Comprar</button>
+</div>
+
+<div class="producto">
+  <div class="carrusel-imagenes" data-imagenes='["reloj3_1.jpeg","reloj3_2.jpeg","reloj3_3.jpeg","reloj3_4.jpeg"]'>
+    <img src="reloj3_1.jpeg" class="imagen-activa" alt="Vista 1">
+    <button class="flecha izquierda">&#10094;</button>
+    <button class="flecha derecha">&#10095;</button>
+  </div>
+  <h3>Reloj Clásico</h3>
+  <p>Diseño elegante con correa de cuero genuino.</p>
+  <span class="precio">$50.000</span>
+    <button class="boton-comprar">Comprar</button>
+</div>
+
+  <div class="producto">
+  <div class="carrusel-imagenes" data-imagenes='["reloj4_1.jpeg","reloj4_2.jpeg","reloj4_3.jpeg","reloj4_4.jpeg"]'>
+    <img src="reloj4_1.jpeg" class="imagen-activa" alt="Vista 1">
+    <button class="flecha izquierda">&#10094;</button>
+    <button class="flecha derecha">&#10095;</button>
+  </div>
+  <h3>Reloj Clásico</h3>
+  <p>Diseño elegante con correa de cuero genuino.</p>
+  <span class="precio">$50.000</span>
+  <button class="boton-comprar">Comprar</button>
+</div>
+
+<div class="producto">
+  <div class="carrusel-imagenes" data-imagenes='["reloj5_1.jpeg","reloj5_2.jpeg","reloj5_3.jpeg"]'>
+    <img src="reloj5_1.jpeg" class="imagen-activa" alt="Vista 1">
+    <button class="flecha izquierda">&#10094;</button>
+    <button class="flecha derecha">&#10095;</button>
+  </div>
+  <h3>Reloj Clásico</h3>
+  <p>Diseño elegante con correa de cuero genuino.</p>
+  <span class="precio">$50.000</span>
+  <button class="boton-comprar">Comprar</button>
+</div>
+
+<div class="producto">
+  <div class="carrusel-imagenes" data-imagenes='["reloj6_1.jpg","reloj6_2.jpg","reloj6_3.jpg","reloj6_4.jpg"]'>
+    <img src="reloj6_1.jpg" class="imagen-activa" alt="Vista 1">
+    <button class="flecha izquierda">&#10094;</button>
+    <button class="flecha derecha">&#10095;</button>
+  </div>
+  <h3>Reloj Clásico</h3>
+  <p>Diseño elegante con correa de cuero genuino.</p>
+  <span class="precio">$50.000</span>
+<button class="boton-comprar">Comprar</button>
+</div>
+
+</div>
+
+  
+
+  <button id="botonInicio" title="Ir al inicio">Ir al inicio</button>
+</section>
+
+
+
+  
+
+
+
+
+
+
+
+
+<section id="nosotros" class="bloque">
+  <h2 class="titulo-seccion">Nosotros</h2>
+  <div class="seccion-con-imagen N">
+    <div class="contenedor-nosotros">
+      <div class="info-quienes">
+        <h3>¿Quiénes Somos?</h3>
+        <p>        Somos una empresa que busca ofrecer relojes competentes y con un diseño algo distintivo que junten funcionalidad y estilo, satisfaciendo las necesidades de clientes que valoran la puntualidad y en parte, la elegancia, mientras se impulsa el crecimiento sostenible de la empresa.
+</p>
+      </div>
+      <div class="info-mision">
+        <h3>Misión</h3>
+        <p>        Brindar relojes de calidad, funcionales y con buen diseño a precios accesibles, brindando a personas de todos los niveles económicos la oportunidad de conocer la hora y con estilo, mientras construimos una marca cercana, confiable y comprometida con un crecimiento responsable.
+</p>
+      </div>
+      <div class="info-vision">
+        <h3>Visión</h3>
+        <p>        Ser reconocida en el año 2030 como una marca referente en relojes asequibles en el mercado regional, destacando por la accesibilidad, la calidad y el diseño, y expandiéndose de forma sostenible para llevar nuestro producto a cada rincón donde el tiempo importe.
+</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto" class="bloque">
+  <h2 class="titulo-seccion">Contáctanos</h2>
+  <div class="seccion-con-imagen C">
+    <div class="contenedor-nosotros">
+      <div class="info-contacto">     
+         <h3 style="color: #00674f;">Correos:</h3>
+      <p>david.tgmd@gmail.com</p>
+      <p>jricardorm2020@gmail.com</p>
+
+      <h3 style="color: #00674f;">Números Telefónicos:</h3>
+      <p>+57 3134481167</p>
+      <p>+57 3125691547</p>
+      <p>+57 3005741051</p>
+
+      <h3 style="color: #00674f;">Redes:</h3>
+      <a href="https://www.instagram.com/timekeeper266/?igsh=Y3B1enFydThxZmc2" 
+         target="_blank" 
+         style="color:#00674f; font-size: 20px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; margin-top: 10px;">
+        <i class="fab fa-instagram"></i> 
+        <span>timekeeper266</span>
+      </a>
+    </div>
+      <div class="info-mapa"> <h3 style="color: #00674f;">Encuéntranos:</h3>
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2597.397161785314!2d-74.0172513056131!3d4.934908886968399!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e4077454f26aa6d%3A0x67bbc4c0703bcbd7!2sI.E.D.%20Rinc%C3%B3n%20Santo!5e0!3m2!1ses-419!2sco!4v1755141511678!5m2!1ses-419!2sco" 
+        width="100%" 
+        height="250" 
+        style="border:0; border-radius: 8px;" 
+        allowfullscreen="" 
+        loading="lazy">
+      </iframe>
+    </div>
+    </div>
+  </div>
+
+  <div style="text-align: center; margin-top: 30px;">
+
+    
+  <button id="botonPQRS" type="button"title="PQRS" class="btn-estilo">
+    <i class="fas fa-envelope"></i> PQRS
+  </button>
+</div>
+<div id="modalPQRS" class="modal">
+  <div class="modal-contenido">
+    <h2>Formulario PQRS</h2>
+    <form id="formPQRS">
+      <label for="pqrs-nombre">Nombre completo:</label>
+      <input type="text" id="pqrs-nombre" name="nombre" required>
+
+      <label for="pqrs-doc">Documento:</label>
+      <input type="text" id="pqrs-doc" name="documento" required>
+
+      <label for="pqrs-email">Correo:</label>
+      <input type="email" id="pqrs-email" name="correo" required>
+
+      <label for="pqrs-mensaje">Mensaje:</label>
+      <textarea id="pqrs-mensaje" name="mensaje" maxlength="3000" rows="5" style="resize: vertical; padding: 10px; border: 1px solid #aaa; border-radius: 5px;" required></textarea>
+
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+</div>
+
+
+</section>
+
+<section id="ofertas" class="bloque">
+  <h2 class="titulo-seccion">Nuestros Modelos 3D</h2>
+  
+<div class="model3d">
+  
+  <model-viewer src="Reloj 1-3d.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="poster.webp" shadow-intensity="1">
+    <div class="progress-bar hide" slot="progress-bar">
+        <div class="update-bar"></div>
+    </div>
+    <button slot="ar-button" id="ar-button">
+        View in your space
+    </button>
+   
+</model-viewer>
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+
+<model-viewer src="Reloj 2-3d.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="poster.webp" shadow-intensity="1">
+    <div class="progress-bar hide" slot="progress-bar">
+        <div class="update-bar"></div>
+    </div>
+    <button slot="ar-button" id="ar-button">
+        View in your space
+    </button>
+    
+</model-viewer>
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+
+<model-viewer src="Reloj5-3d.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="poster.webp" shadow-intensity="1">
+    <div class="progress-bar hide" slot="progress-bar">
+        <div class="update-bar"></div>
+    </div>
+    <button slot="ar-button" id="ar-button">
+        View in your space
+    </button>
+   
+</model-viewer>
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+
+</div>
+
+</section>
+  </div>
+ 
+
+
+
+
+
+  <footer>
+    <p>&copy; 2025 Más información próximamente</p>
+  </footer>
+
+
+
+
+
+
+<script>
+
+  
+document.querySelectorAll(".carrusel-imagenes").forEach(carrusel => {
+  
+    
+
+  const imagen = carrusel.querySelector("img");
+  const izquierda = carrusel.querySelector(".izquierda");
+  const derecha = carrusel.querySelector(".derecha");
+  const imagenes = JSON.parse(carrusel.dataset.imagenes);
+
+  // Inicializamos el índice con un data-attribute
+  carrusel.dataset.index = "0";
+
+  izquierda.addEventListener("click", (event) => {
+    event.stopPropagation();
+    let index = parseInt(carrusel.dataset.index, 10);
+    index = (index - 1 + imagenes.length) % imagenes.length;
+    carrusel.dataset.index = index;
+    imagen.src = imagenes[index];
+  });
+
+  derecha.addEventListener("click", (event) => {
+    event.stopPropagation();
+    let index = parseInt(carrusel.dataset.index, 10);
+    index = (index + 1) % imagenes.length;
+    carrusel.dataset.index = index;
+    imagen.src = imagenes[index];
+  });
+});
+   const botonFormulario = document.getElementById("botonFormulario");
+  const modal = document.getElementById("modalRegistro");
+
+  // Mostrar modal al hacer clic en el carrito
+  botonFormulario.addEventListener("click", () => {
+    modal.style.display = "block";
+  });
+
+const botonesComprar = document.querySelectorAll(".boton-comprar");
+botonesComprar.forEach(boton => {
+  boton.addEventListener("click", (event) => {
+    event.stopPropagation(); // Por si está dentro de otra cosa
+    modal.style.display = "block";
+  });
+});
+
+  // Ocultar modal si se hace clic fuera del formulario
+  window.addEventListener("click", function(event) {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+
+  // Enviar formulario por AJAX (sin recargar)
+  document.getElementById("formularioRegistro").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+
+    fetch("http://localhost/timekeeper/registro.php", {
+      method: "POST",
+      body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+      alert(data);
+      this.reset();
+      modal.style.display = "none";
+    })
+    .catch(error => {
+      alert("Error al registrar: " + error);
+    });
+  });
+
+  // Scroll al inicio
+  document.getElementById("botonInicio").addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+let menuAbierto = false;
+
+document.getElementById("botonMenu").addEventListener("click", () => {
+  const barra = document.getElementById("barraMenu");
+  if (menuAbierto) {
+    barra.style.left = "-220px";
+  } else {
+    barra.style.left = "0";
+  }
+  menuAbierto = !menuAbierto;
+});
+
+// Scroll suave a secciones
+function scrollToSection(id) {
+  if (id === 'top') {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    const seccion = document.getElementById(id);
+    if (seccion) {
+      seccion.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  // Cerrar el menú
+  const barra = document.getElementById("barraMenu");
+  barra.style.left = "-220px";
+  menuAbierto = false;
+}
+
+function actualizarReloj() {
+  const ahora = new Date();
+  let horas = ahora.getHours();
+  const minutos = ahora.getMinutes().toString().padStart(2, '0');
+  const segundos = ahora.getSeconds().toString().padStart(2, '0');
+  const ampm = horas >= 12 ? 'PM' : 'AM';
+
+  horas = horas % 12;
+  horas = horas ? horas : 12; // el 0 se convierte en 12
+  horas = horas.toString().padStart(2, '0');
+
+  const reloj = document.getElementById("reloj");
+
+  if (reloj) {
+    reloj.textContent = `${horas}:${minutos}:${segundos} ${ampm}`;
+  }
+}
+
+
+setInterval(actualizarReloj, 1000);
+actualizarReloj();
+
+
+document.getElementById("formAcertijo").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const respuesta = document.querySelector('input[name="respuesta"]:checked');
+  const mensaje = document.getElementById("mensajeAcertijo");
+
+  if (!respuesta) {
+    mensaje.textContent = "Por favor selecciona una respuesta.";
+    mensaje.style.color = "red";
+    return;
+  }
+
+  if (respuesta.value === "A") {
+    mensaje.textContent = "¡Correcto! Ahora puedes girar la ruleta.";
+    mensaje.style.color = "green";
+    document.getElementById("contenedorRuleta").style.display = "block";
+  } else {
+    mensaje.textContent = "Respuesta incorrecta. Inténtalo de nuevo.";
+    mensaje.style.color = "red";
+    document.getElementById("contenedorRuleta").style.display = "none";
+  }
+});
+
+// Ruleta de descuentos
+const opcionesDescuento = ["10% OFF", "15% OFF", "20% OFF", "30% OFF", "Sin descuento", "5% OFF"];
+const canvas = document.getElementById("ruleta");
+const ctx = canvas.getContext("2d");
+const numOpciones = opcionesDescuento.length;
+const angulo = (2 * Math.PI) / numOpciones;
+let rotacion = 0;
+
+function dibujarRuleta() {
+  const colores = ["#f6f8dd", "#fffdf3", "#d0f0e0", "#fdfcd9", "#f0e3cf", "#c2eaba"];
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  for (let i = 0; i < numOpciones; i++) {
+    const start = i * angulo;
+    const end = start + angulo;
+
+    ctx.beginPath();
+    ctx.moveTo(150, 150);
+    ctx.arc(150, 150, 140, start, end);
+    ctx.fillStyle = colores[i % colores.length];
+    ctx.fill();
+    ctx.stroke();
+
+    // Texto
+    ctx.save();
+    ctx.translate(150, 150);
+    ctx.rotate(start + angulo / 2);
+    ctx.fillStyle = "#333";
+    ctx.font = "bold 14px Arial";
+    ctx.textAlign = "right";
+    ctx.fillText(opcionesDescuento[i], 130, 5);
+    ctx.restore();
+  }
+}
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const botonPQRS = document.getElementById("botonPQRS");
+  const modalPQRS = document.getElementById("modalPQRS");
+
+  botonPQRS.addEventListener("click", () => {
+    modalPQRS.style.display = "block";
+  });
+
+  window.addEventListener("click", function (event) {
+    if (event.target === modalPQRS) {
+      modalPQRS.style.display = "none";
+    }
+  });
+});
+
+
+document.getElementById("formPQRS").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const formData = new FormData(this);
+
+  fetch("http://localhost/timekeeper/pqrs.php", {
+    method: "POST",
+    body: formData
+  })
+  .then(response => response.text())
+  .then(data => {
+    alert(data);
+    this.reset();
+    document.getElementById("modalPQRS").style.display = "none";
+  })
+  .catch(error => {
+    alert("Error al enviar PQRS: " + error);
+  });
+});
+</script>
+
+
+
+
+
+</body>
+</html>
